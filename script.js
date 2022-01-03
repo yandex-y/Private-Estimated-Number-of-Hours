@@ -79,7 +79,7 @@ function hitung(){
                             }
                         }
             
-                        display1.innerHTML = `${arr3[0]} ${arr3[1]} ${arr3[2]} ${arr3[2]}`;
+                        display1.innerHTML = `${arr3[0]} ${arr3[1]} ${arr3[2]} ${arr3[3]}`;
                         display2.innerHTML = `${cekHasilBig[1]}, ${hasil.getDate()} ${cekHasilBig[0]} ${hasil.getFullYear()} - ${cekHasilSmall[0]}:${cekHasilSmall[1]}`;
                     }
                 }
