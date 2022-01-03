@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+:root{
+    font-family: Arial;
+    background: linear-gradient(to bottom right,#5b7fff,#33ccfc) no-repeat;
+    min-height: 100vh;
+}
+header{
+    width: 100%;
+    font-size: .8rem;
+    padding: 14px 0;
+    background: white;
+    color: #5b7fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    max-width: 400px;
+    width: 82vw;
+    margin: 16vmin auto;
+    background-image: linear-gradient(to bottom right,#202020 50%,#434343);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    padding: 14px;
+    border-radius: 7px;
+    min-height: 185px;
+    box-shadow: 4px -4px 1px #434343;
+}
+.container > form{
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;
+    font-size: 1.7rem;
+    gap: 10px;
+}
+.container > form > input{
+    max-width: 52px;
+    text-align: center;
+    font-size: 1.4rem;
+    padding: 7px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    box-shadow: -1.5px 1.5px 1px gray;
+}
+.container > form > input[type=reset]{
+    max-width: 70px;
+    background-color: #434343;
+    color: white;
+    padding: 5px;
+    box-shadow: 1.5px -1.5px 1px white;
+}
+.container > form > input[type=reset]:active{
+    background-color: #383838;
+    box-shadow: .5px -.5px 1px white;
+    color: #B1B1B1;
+}
+.container > p{
+    font-size: .7rem;
+    color: white;
+}
