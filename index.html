@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Estimated Number of Hours</title>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+    <title>Estimated Time</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>Estimated Number of Hours</header>
+    <header>
+        Estimated Number of Hours
+    </header>
     <div class="container">
-        <p>:)</p>
+        <p id="display2" class="display"></p>
         <form>
-            <input type="number" placeholder="Bulan">
-            <input type="number" placeholder="Hari">
-            <input type="number" placeholder="Jam">
-            <input type="number" placeholder="Menit">
-            <input type="Reset">
+            <input type="number" placeholder="Bulan" id="month">
+            <input type="number" placeholder="Hari" id="day">
+            <input type="number" placeholder="Jam" id="hour">
+            <input type="number" placeholder="Menit" id="minute">
         </form>
-        <p></p>
+        <input type="button" id="reset" value="Reset" class="button">
+        <p id="display" class="display"></p>
     </div>
     <script src="script.js"></script>
 </body>
