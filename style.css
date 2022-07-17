@@ -1,37 +1,39 @@
+@font-face{
+    font-family: 'Poppins-Medium';
+    src: url('Poppins-Medium.woff');
+}
+
 *{
     margin: 0;
     padding: 0;
 }
 :root{
-    font-family: Arial;
-    background: linear-gradient(to bottom right,#5b7fff,#33ccfc) no-repeat;
+    font-family: 'Poppins-Medium';
+    background: darkslateblue;
     min-height: 100vh;
 }
 header{
-    width: 100%;
-    font-size: .8rem;
-    padding: 14px 0;
-    background: white;
+    font-size: 1.5rem;
     color: #5b7fff;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    margin: 6vh 0 8vh;
+    color: white;
+    text-shadow: 2px 3px 3px rgba(0,0,0,.3);
 }
 .container{
     max-width: 400px;
     width: 82vw;
-    margin: 16vmin auto;
-    background-image: linear-gradient(to bottom right,#202020 50%,#434343);
-    text-align: center;
+    margin: auto;
+    background: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 18px;
-    padding: 14px;
+    align-items: center;
+    padding: 2rem 1.2rem;
     border-radius: 7px;
-    min-height: 185px;
-    box-shadow: 4px -4px 1px #434343;
+    gap: 1.2rem;
+    box-shadow: -2px 2px 5px rgba(0,0,0,.3);
 }
 .container > form{
     display: flex;
@@ -48,21 +50,33 @@ header{
     border: none;
     outline: none;
     border-radius: 4px;
-    box-shadow: -1.5px 1.5px 1px gray;
+    background: darkslateblue;
+    color: #fff;
+    transition: transform .3s;
+    font-family: inherit;
+    box-shadow: -2px 2px 5px rgba(0,0,0,.3);
 }
-.container > form > input[type=reset]{
-    max-width: 70px;
-    background-color: #434343;
+.container > form > input[type=number]:focus{
+    transform: translateY(-6px);
+}
+.container > form > input::placeholder{
+    color: rgba(255,255,255,.2);
+}
+.button{
+    background-color: darkslateblue;
     color: white;
-    padding: 5px;
-    box-shadow: 1.5px -1.5px 1px white;
-}
-.container > form > input[type=reset]:active{
-    background-color: #383838;
-    box-shadow: .5px -.5px 1px white;
-    color: #B1B1B1;
+    font-size: 1rem;
+    box-shadow: -2px 2px 2px gray;
+    border: none;
+    border-radius: 6px;
+    padding: .4rem;
+    font-family: inherit;
 }
 .container > p{
     font-size: .7rem;
-    color: white;
+    color: darkslateblue;
+    text-align: center;
+}
+p.display{
+    font-style: italic;
 }

@@ -1,89 +1,84 @@
-//Variabel
-const inputBulan = document.querySelectorAll('form > input')[0],
-      inputHari = document.querySelectorAll('form > input')[1],
-      inputJam = document.querySelectorAll('form > input')[2],
-      inputMenit = document.querySelectorAll('form > input')[3],
-      display1 = document.querySelector('.container > p:first-child'), 
-      display2 = document.querySelector('.container > p:last-child'),
-      btn_reset = document.querySelector('.container > form > input[type=reset]'),
-      arr = [inputBulan,inputHari,inputJam,inputMenit],
-      days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jum\'at','Sabtu'],
-      month = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-      let numbers = 0;
+//VARIABEL
+const inpArr = [
+    document.getElementById('month'),
+    document.getElementById('day'),
+    document.getElementById('hour'),
+    document.getElementById('minute')
+];
+const maxvalue = [999999, 9999999, 999999999, 9999999999]
+const btn_reset = document.getElementById('reset');
+const display = document.getElementById('display');
+const display2 = document.getElementById('display2');
+const strDay = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu'];
+const strMonth = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
 
-
-//Run Function & Event Listener
-hitung()
-for(x of arr){x.onkeyup = () => {hitung()}}
-for(x of arr){x.onchange = () => {hitung()}}
-btn_reset.addEventListener('click',() => {
-    display1.innerHTML = ':)';
-    InputBefore() 
+//EVENT LISTENER
+inpArr.forEach((x, i) => {
+    x.addEventListener('input', (e) => {
+        validasiValue(e.target, maxvalue[i], i)
+        calc()
+    })
+})
+inpArr.forEach((x, i) => {
+    x.addEventListener('keydown', (e) => {
+        if (e.key == 'Backspace') {
+            if (e.target.value.length == 0) {
+                inpArr[i-1].focus()
+            }
+        }
+    })
+})
+btn_reset.addEventListener('click', () => {
+    inpArr.forEach(x => {
+        x.value = ''
+    })
+    calc()
 })
 
+//RUN FUNCTION
+calc()
 
-//Function
-function hitung(){
-    let dateNow = new Date().getTime(),
-        bulan = parseFloat(inputBulan.value) * 2628002880,
-        hari = parseFloat(inputHari.value) * 86400000,
-        jam = parseFloat(inputJam.value) * 3600000,
-        menit = parseFloat(inputMenit.value) * 60000,
-        arr2 = [bulan,hari,jam,menit];
-        
-        if(inputBulan.value.length == 0 && inputHari.value.length == 0 && inputJam.value.length == 0 && inputMenit.value.length == 0){
-              InputBefore()
-          }else{
-              let dispBulan = inputBulan.value + ' Bulan ',
-                  dispHari = inputHari.value + ' Hari ',
-                  dispJam = inputJam.value + ' Jam ',
-                  dispMenit = inputMenit.value + ' Menit ',
-                  arr3 = [dispBulan,dispHari,dispJam,dispMenit];
-                  
-                  for(x of arr){
-                      if(x.value.length == 0){
-                          arr2[numbers] = 0;
-                          arr3[numbers] = '';
-                        }
-                        numbers++;
-                    }
-                    numbers = 0;
-                    
-                    let hasil = new Date(dateNow + arr2[0] + arr2[1] + arr2[2] + arr2[3]),
-                        cekHasilBulan = hasil.getMonth(),  
-                        cekHasilHari = hasil.getDay(),
-                        cekHasilJam = hasil.getHours(),
-                        cekHasilMenit = hasil.getMinutes(),
-                        cekHasilBig = [cekHasilBulan,cekHasilHari],
-                        cekHasilSmall = [cekHasilJam,cekHasilMenit];
-              
-                        for(x of month){
-                            if(cekHasilBig[0] == numbers){
-                                cekHasilBig[0] = x;
-                            }
-                            numbers++
-                        }
-                        numbers = 0
-            
-                        for(x of days){
-                            if(cekHasilBig[1] == numbers){
-                                cekHasilBig[1] = x;
-                            }
-                            numbers++
-                        }
-                        numbers = 0;
-            
-                        for(let i = 0; i <= 1;i++){
-                            if(cekHasilSmall[i].toString().length === 1){
-                                cekHasilSmall[i] = '0' + cekHasilSmall[i];
-                            }
-                        }
-            
-                        display1.innerHTML = `${arr3[0]} ${arr3[1]} ${arr3[2]} ${arr3[3]}`;
-                        display2.innerHTML = `${cekHasilBig[1]}, ${hasil.getDate()} ${cekHasilBig[0]} ${hasil.getFullYear()} - ${cekHasilSmall[0]}:${cekHasilSmall[1]}`;
-                    }
-                }
-                
-function InputBefore(){
-    display2.innerHTML = 'Masukkan input Terlebih Dahulu';
+//FUNCTION
+function calc() {
+
+    const x = new Date();
+    const newDate = []
+
+    inpArr.forEach(x => {
+        let nd;
+        if (x.value.length == 0 || x.value == '') {
+            nd = 0
+        } else {
+            nd = parseInt(x.value)
+        }
+        newDate.push(nd)
+    })
+    const getTimeTarget = new Date(x.getFullYear(),
+        x.getMonth() + newDate[0],
+        x.getDate() + newDate[1],
+        x.getHours() + newDate[2],
+        x.getMinutes() + newDate[3],
+        x.getSeconds(),
+        x.getMilliseconds());
+
+    const mountOut = getTimeTarget.getMonth();
+    const dayOut = getTimeTarget.getDay();
+    let hourOut;
+    let minuteOut;
+
+    getTimeTarget.getHours() < 10 ? hourOut = '0' + getTimeTarget.getHours(): hourOut = getTimeTarget.getHours();
+    getTimeTarget.getMinutes() < 10 ? minuteOut = '0' + getTimeTarget.getMinutes(): minuteOut = getTimeTarget.getMinutes()
+
+    display2.innerText = `${newDate[0] == 0 ? '': newDate[0] + ' Bulan'} ${newDate[1] == 0 ? '': newDate[1] + ' Hari'} ${newDate[2] == 0 ? '': newDate[2] + ' Jam'} ${newDate[3] == 0 ? '': newDate[3] + ' Menit'}`
+    display.innerText = `${strDay[dayOut]}, ${getTimeTarget.getDate()} ${strMonth[mountOut]} ${getTimeTarget.getFullYear()} - ${hourOut}.${minuteOut}`
+
+}
+
+function validasiValue(target, maxvalue, nextIndex) {
+    if (target.value > maxvalue) {
+        target.value = maxvalue;
+        if (nextIndex < inpArr.length - 1) {
+            inpArr[nextIndex+1].focus()
+        }
+    }
 }
